@@ -1,0 +1,180 @@
+@startuml
+!theme reddress-darkblue
+
+package "Model" #8732a8 {
+  Pessoa "1" *-- "1" Endereco : tem
+  Pessoa "1" *-- "1" Contato : tem
+  Matricula "1" *-- "1" Curso : tem
+  Curso "1" *-- "n"  Modulo : tem
+  Curso "1" *-- "n"  ObjetivoGeral : tem
+  UnidadeDidatica "1" *-- "n"  Modulo : tem
+  UnidadeDidatica "1" *-- "n" Metodologia : tem
+  UnidadeDidatica "1" *-- "n" Aula : tem
+  Tema "1" *-- "n" Repertorio : tem
+  Curso "1" *-- "n" Categoria : tem
+  Repertorio "1" *-- "n" TOM : tem
+  Repertorio "1" *-- "n" CONTEUDO : tem 
+  ObjetivoGeral <|-- Objetivo
+  ObjetivoEspecifico <|-- Objetivo
+  Aula "1" *-- "1" ObjetivoEspecifico:tem 
+  UnidadeDidatica "1" *-- "1" Tema : tem
+  Aluno "1" *-- "n" Matricula : tem
+  Aula "1" *-- "n" Atividade : tem
+  Curso "1" *-- "n" Recurso : tem
+  UnidadeDidatica "1" *-- "n" Questionario : tem
+  Aluno <|-- Pessoa
+  Professor <|-- Pessoa
+}
+
+class Professor {
+  - id : Long
+  - cursos: List<Curso>
+}
+
+class Aluno {
+  - id : Long
+  - matriculas: List<Matricula>
+}
+
+class Aula {
+  - id : Long
+  - matricula: Matricula
+  - conteudos: List<CONTEUDO>
+  - repertorio: List<Repertorio>
+  - atividades: List<Atividade>
+}
+
+class Atividade{
+  - objetivos : List<ObjetivosEspecificos>
+}
+
+class Matricula {
+  - id : Long
+  - curso : Curso
+  - inicio: DateTime
+  - fim: DateTime
+}
+
+abstract Pessoa {
+  - nome : String
+  - sobrenome : String
+  - endereço : Endereco
+  - usuario: String
+  - senha: String
+  - contato: Contato
+  - endereco: Endereco
+}
+
+class Contato {
+  - email: String
+  - telefone: String
+}
+
+class Endereco{
+ -String: logradouro
+ -int: numero
+ -String: complemento
+ -String: cep
+ -String: cidade
+ -String: estado
+ -String: pais
+}
+
+class Curso {
+  -nome: String
+  -modulos : List<Modulo>
+  -categorias : List<Categoria>
+  -recursos: List<Recursos>
+}
+
+class Categoria {
+  - id : Long
+  - nome : String
+}
+
+class Modulo {
+  -nome: String
+  -unidades : List<UnidadeDidatica>
+}
+
+abstract Objetivo{
+  -id: Long
+  -verbo: String
+  -complemento: String
+}
+
+class Metodologia{
+  -id : Long
+  -acao: String
+  -conteudo: String
+  -modo: String
+}
+
+class UnidadeDidatica{
+  -id : Long
+  -aulas: List<Aula>
+  -nome: String
+  -conteudos: List<Conteudos>
+  -referencias: List<String>
+  -questionarios: List<Questionario>
+}
+
+class Tema{
+  -id : Long
+  -nome: String
+  -repertorio: List<Repertorio>
+  -areasRelacionadas: List<Areas>
+}
+
+class Repertorio{
+  -id : Long
+  -nomeObra: String
+  -conteudos: List<CONTEUDO>
+  -autor: String
+  -genero: String
+  -tom: String
+  -ano: DateTime
+}
+
+class Atividade{
+  -id : Long
+  -nome: String
+  -descricao: String
+  -objetivos : List<ObjetivoEspecifico>
+  -acoes: List<AcaoImpl>
+}
+
+enum TOM {
+  + DO
+  + SOL
+  + RE
+  + LA
+  + MI
+  + SI
+  + FA#
+  + DO#
+  + Bb
+  + SOL#
+  + LAb
+  + MIb
+  + SIb
+  + Am
+  + Em
+  + F#m
+  + C#m
+  + G#m
+  + D#m
+  + A#m
+  + Bbm
+  + Gm
+}
+
+enum CONTEUDO {
+  + HARMONIA
+  + LEITURA_ESCRITA
+  + RITMO
+  + TECNICA
+  + CRIACAO
+  + PERCEPCAO
+}
+@enduml
