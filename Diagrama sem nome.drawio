@@ -177,6 +177,9 @@
         <mxCell id="6e0c8c40b5770093-73" value="Solução Brad Seg" style="text;html=1;align=left;verticalAlign=top;spacingTop=-4;fontSize=10;fontFamily=Verdana" parent="1" vertex="1">
           <mxGeometry x="327.5" y="114.5" width="130" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="NwHMj25AEZEmzx4SZqN9-1" value="a" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="750" y="450" width="60" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
